@@ -9,6 +9,12 @@ from panda import Panda  # type: ignore
 from tp20 import TP20Transport
 from kwp2000 import ACCESS_TYPE, ROUTINE_CONTROL_TYPE, KWP2000Client, SESSION_TYPE, ECU_IDENTIFICATION_TYPE
 
+try:
+    from opendbc.car.structs import CarParams
+    SAFETY_ALLOUTPUT = CarParams.SafetyModel.allOutput
+except (ImportError, AttributeError):
+    SAFETY_ALLOUTPUT = 17
+
 CHUNK_SIZE = 240
 
 
@@ -54,7 +60,7 @@ if __name__ == "__main__":
 
     p = Panda()
     p.can_clear(0xFFFF)
-    p.set_safety_mode(Panda.SAFETY_ALLOUTPUT)
+    p.set_safety_mode(SAFETY_ALLOUTPUT)
 
     print("Connecting...")
     tp20 = TP20Transport(p, 0x9, bus=args.bus)
