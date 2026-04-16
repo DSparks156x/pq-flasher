@@ -126,8 +126,10 @@ class TP20Transport:
         """Even though both sides have their own sequence counter
         we expect an ack with our own sequence + 1"""
         seq = (self.tx_seq + 1) & 0xF
-        if self.can_recv() != bytes([0xB0 | seq]):
-            raise RuntimeError("Wrong ack received")
+        dat = self.can_recv()
+        expected = bytes([0xB0 | seq])
+        if dat != expected:
+            raise RuntimeError(f"Wrong ack received. Expected {expected.hex()}, got {dat.hex()}")
 
     def send_ack(self):
         """Even though both sides have their own sequence counter
