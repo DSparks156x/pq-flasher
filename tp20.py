@@ -128,8 +128,15 @@ class TP20Transport:
         seq = (self.tx_seq + 1) & 0xF
         dat = self.can_recv()
         expected = bytes([0xB0 | seq])
-        if dat != expected:
-            raise RuntimeError(f"Wrong ack received. Expected {expected.hex()}, got {dat.hex()}")
+        if dat == expected:
+            return
+
+        # If it's a data packet, queue it for later (implicit ACK)
+        if dat[0] & 0xF0 in [0x10, 0x20]:
+            self.msgs.append((self.rx_addr, dat))
+            return
+
+        raise RuntimeError(f"Wrong ack received. Expected {expected.hex()}, got {dat.hex()}")
 
     def send_ack(self):
         """Even though both sides have their own sequence counter
