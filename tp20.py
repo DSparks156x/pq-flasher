@@ -178,5 +178,6 @@ class TP20Transport:
 
         length = struct.unpack(">H", payload[:2])[0]
         data = payload[2 : length + 2]
-        assert len(data) == length
+        if len(data) != length:
+            raise RuntimeError(f"TP2.0 length mismatch. Expected {length}, got {len(data)}. Full payload: {payload.hex()}")
         return data
