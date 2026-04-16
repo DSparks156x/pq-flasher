@@ -139,11 +139,11 @@ class CcpClient():
       raise ValueError("station address must be less than 65536")
     # NOTE: station address is always little endian
     self._send_cro(COMMAND_CODE.CONNECT, struct.pack("<H", station_addr))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def exchange_station_ids(self, device_id_info: bytes = b"") -> dict:
     self._send_cro(COMMAND_CODE.EXCHANGE_ID, device_id_info)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     return { # TODO: define a type
       "id_length": resp[0],
       "data_type": resp[1],
@@ -155,7 +155,7 @@ class CcpClient():
     if resource_mask > 255:
       raise ValueError("resource mask must be less than 256")
     self._send_cro(COMMAND_CODE.GET_SEED)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     # protected = resp[0] == 0
     seed = resp[1:]
     return seed
@@ -164,7 +164,7 @@ class CcpClient():
     if len(key) > 6:
       raise ValueError("max key size is 6 bytes")
     self._send_cro(COMMAND_CODE.UNLOCK, key)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     status = resp[0]
     return status
 
@@ -174,13 +174,13 @@ class CcpClient():
     if addr_ext > 255:
       raise ValueError("address extension must be less than 256")
     self._send_cro(COMMAND_CODE.SET_MTA, bytes([mta_num, addr_ext]) + struct.pack(f"{self.byte_order.value}I", addr))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def download(self, data: bytes) -> int:
     if len(data) > 5:
       raise ValueError("max data size is 5 bytes")
     self._send_cro(COMMAND_CODE.DNLOAD, bytes([len(data)]) + data)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     # mta_addr_ext = resp[0]
     mta_addr = struct.unpack(f"{self.byte_order.value}I", resp[1:5])[0]
     return mta_addr
@@ -189,7 +189,7 @@ class CcpClient():
     if len(data) != 6:
       raise ValueError("data size must be 6 bytes")
     self._send_cro(COMMAND_CODE.DNLOAD_6, data)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     # mta_addr_ext = resp[0]
     mta_addr = struct.unpack(f"{self.byte_order.value}I", resp[1:5])[0]
     return mta_addr
@@ -198,7 +198,7 @@ class CcpClient():
     if size > 5:
       raise ValueError("size must be less than 6")
     self._send_cro(COMMAND_CODE.UPLOAD, bytes([size]))
-    return self._recv_dto(0.025)
+    return self._recv_dto(0.2)
 
   def short_upload(self, size: int, addr_ext: int, addr: int) -> bytes:
     if size > 5:
@@ -206,17 +206,17 @@ class CcpClient():
     if addr_ext > 255:
       raise ValueError("address extension must be less than 256")
     self._send_cro(COMMAND_CODE.SHORT_UP, bytes([size, addr_ext]) + struct.pack(f"{self.byte_order.value}I", addr))
-    return self._recv_dto(0.025)
+    return self._recv_dto(0.2)
 
   def select_calibration_page(self) -> None:
     self._send_cro(COMMAND_CODE.SELECT_CAL_PAGE)
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def get_daq_list_size(self, list_num: int, can_id: int = 0) -> dict:
     if list_num > 255:
       raise ValueError("list number must be less than 256")
     self._send_cro(COMMAND_CODE.GET_DAQ_SIZE, bytes([list_num, 0]) + struct.pack(f"{self.byte_order.value}I", can_id))
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     return { # TODO: define a type
       "list_size": resp[0],
       "first_pid": resp[1],
@@ -230,7 +230,7 @@ class CcpClient():
     if element_num > 255:
       raise ValueError("element number must be less than 256")
     self._send_cro(COMMAND_CODE.SET_DAQ_PTR, bytes([list_num, odt_num, element_num]))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def write_daq_list_entry(self, size: int, addr_ext: int, addr: int) -> None:
     if size > 255:
@@ -238,7 +238,7 @@ class CcpClient():
     if addr_ext > 255:
       raise ValueError("address extension must be less than 256")
     self._send_cro(COMMAND_CODE.WRITE_DAQ, bytes([size, addr_ext]) + struct.pack(f"{self.byte_order.value}I", addr))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def start_stop_transmission(self, mode: int, list_num: int, odt_num: int, channel_num: int, rate_prescaler: int = 0) -> None:
     if mode > 255:
@@ -252,24 +252,24 @@ class CcpClient():
     if rate_prescaler > 65535:
       raise ValueError("rate prescaler must be less than 65536")
     self._send_cro(COMMAND_CODE.START_STOP, bytes([mode, list_num, odt_num, channel_num]) + struct.pack(f"{self.byte_order.value}H", rate_prescaler))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def disconnect(self, station_addr: int, temporary: bool = False) -> None:
     if station_addr > 65535:
       raise ValueError("station address must be less than 65536")
     # NOTE: station address is always little endian
     self._send_cro(COMMAND_CODE.DISCONNECT, bytes([int(not temporary), 0x00]) + struct.pack("<H", station_addr))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def set_session_status(self, status: int) -> None:
     if status > 255:
       raise ValueError("status must be less than 256")
     self._send_cro(COMMAND_CODE.SET_S_STATUS, bytes([status]))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def get_session_status(self) -> dict:
     self._send_cro(COMMAND_CODE.GET_S_STATUS)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     return { # TODO: define a type
       "status": resp[0],
       "info": resp[2] if resp[1] else None,
@@ -309,7 +309,7 @@ class CcpClient():
 
   def move_memory_block(self, size: int) -> None:
     self._send_cro(COMMAND_CODE.MOVE, struct.pack(f"{self.byte_order.value}I", size))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def diagnostic_service(self, service_num: int, data: bytes = b"") -> dict:
     if service_num > 65535:
@@ -317,7 +317,7 @@ class CcpClient():
     if len(data) > 4:
       raise ValueError("max data size is 4 bytes")
     self._send_cro(COMMAND_CODE.DIAG_SERVICE, struct.pack(f"{self.byte_order.value}H", service_num) + data)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     return { # TODO: define a type
       "length": resp[0],
       "type": resp[1],
@@ -329,7 +329,7 @@ class CcpClient():
     if len(data) > 4:
       raise ValueError("max data size is 4 bytes")
     self._send_cro(COMMAND_CODE.ACTION_SERVICE, struct.pack(f"{self.byte_order.value}H", service_num) + data)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     return { # TODO: define a type
       "length": resp[0],
       "type": resp[1],
@@ -340,17 +340,17 @@ class CcpClient():
       raise ValueError("station address must be less than 65536")
     # NOTE: station address is always little endian
     self._send_cro(COMMAND_CODE.TEST, struct.pack("<H", station_addr))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def start_stop_synchronised_transmission(self, mode: int) -> None:
     if mode > 255:
       raise ValueError("mode must be less than 256")
     self._send_cro(COMMAND_CODE.START_STOP_ALL, bytes([mode]))
-    self._recv_dto(0.025)
+    self._recv_dto(0.2)
 
   def get_active_calibration_page(self):
     self._send_cro(COMMAND_CODE.GET_ACTIVE_CAL_PAGE)
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     # cal_addr_ext = resp[0]
     cal_addr = struct.unpack(f"{self.byte_order.value}I", resp[1:5])[0]
     return cal_addr
@@ -358,5 +358,5 @@ class CcpClient():
   def get_version(self, desired_version: float = 2.1) -> float:
     major, minor = map(int, str(desired_version).split("."))
     self._send_cro(COMMAND_CODE.GET_CCP_VERSION, bytes([major, minor]))
-    resp = self._recv_dto(0.025)
+    resp = self._recv_dto(0.2)
     return float(f"{resp[0]}.{resp[1]}")
