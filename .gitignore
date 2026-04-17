@@ -2,3 +2,13 @@
 __pycache__/
 *.swp
 panda
+.gemini/
+conductor/
+scratch/
+steeringrack.rep/
+bridge_mcp_ghidra.py
+vw_pq.dbc
+steeringrack.gpr
+steeringrack.lock
+steeringrack.lock~
+
