@@ -19,18 +19,81 @@ patches = {
         (0x0005D2FA, b"\x14", b"\x00"),  # Min speed
         (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
     ],
-    "3001": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D280, b"\x64", b"\x00"),  # Timebomb 1
-        (0x0005D284, b"\x14", b"\x00"),  # Min speed 1
-        (0x0005D286, b"\x64", b"\x00"),  # Timebomb 2
-        (0x0005D28C, b"\x14", b"\x00"),  # Min speed 2
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2": [
+    "3001_v2_hca": [
         (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
         (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
         (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca2": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
+        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
+        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca3": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D16A, b"\x2c\x01", b"\x90\x01"),  # Unknown limit (16A): 300 -> 400
+        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
+        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca4": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca5": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
+        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca6": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
+        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca7": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
+        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca8": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca9": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
+        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
+    ],
+    "3001_v2_hca11": [
+        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
+        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
+        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
+        (0x0005D0A8, b"\xcc\x00", b"\x24\x03"),  # Command reject limit: 204 -> 804
+        (0x0005D0A6, b"\xcc\x00", b"\x24\x03"),  # Command truncate limit: 204 -> 804
         (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
     ],
     "3305": [
@@ -50,12 +113,52 @@ checksums = {
         (0x05DFFE, 0x5CFFF, 0x5DFFC),
         (0x05EFFE, 0x5E000, 0x5EFFE),
     ],
-    "3001": [
+    "3001_v2_hca": [
         (0x05DFFC, 0x5C000, 0x5CFFF),
         (0x05DFFE, 0x5CFFF, 0x5DFFC),
         (0x05EFFE, 0x5E000, 0x5EFFE),
     ],
-    "3001_v2": [
+    "3001_v2_hca2": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca3": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca4": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca5": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca6": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca7": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca8": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca9": [
+        (0x05DFFC, 0x5C000, 0x5CFFF),
+        (0x05DFFE, 0x5CFFF, 0x5DFFC),
+        (0x05EFFE, 0x5E000, 0x5EFFE),
+    ],
+    "3001_v2_hca11": [
         (0x05DFFC, 0x5C000, 0x5CFFF),
         (0x05DFFE, 0x5CFFF, 0x5DFFC),
         (0x05EFFE, 0x5E000, 0x5EFFE),
@@ -94,7 +197,27 @@ if __name__ == "__main__":
     parser = ArgumentParser()
     parser.add_argument("--input", required=True, help="input file to patch")
     parser.add_argument("--output", required=True, help="output file")
-    parser.add_argument("--version", default="2501", const="2501", nargs="?", choices=["2501", "3001", "3001_v2", "3305", "3501"])
+    parser.add_argument(
+        "--version",
+        default="2501",
+        const="2501",
+        nargs="?",
+        choices=[
+            "2501",
+            "3001_v2_hca",
+            "3001_v2_hca2",
+            "3001_v2_hca3",
+            "3001_v2_hca4",
+            "3001_v2_hca5",
+            "3001_v2_hca6",
+            "3001_v2_hca7",
+            "3001_v2_hca8",
+            "3001_v2_hca9",
+            "3001_v2_hca11",
+            "3305",
+            "3501",
+        ],
+    )
     args = parser.parse_args()
 
     with open(args.input, "rb") as input_fw:
@@ -108,7 +231,9 @@ if __name__ == "__main__":
         length = len(orig)
         cur = input_fw_s[addr : addr + length]
 
-        assert cur == orig, f"Unexpected values in input FW {cur.hex()} expected {orig.hex()}"
+        assert cur == orig, (
+            f"Unexpected values in input FW {cur.hex()} expected {orig.hex()}"
+        )
 
         if new is not None:
             assert len(new) == length

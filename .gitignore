@@ -12,3 +12,6 @@ steeringrack.gpr
 steeringrack.lock
 steeringrack.lock~
 datasets/
+.mcp.json
+.nanocoder/
+newassistcurve/
