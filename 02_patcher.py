@@ -19,38 +19,13 @@ patches = {
         (0x0005D2FA, b"\x14", b"\x00"),  # Min speed
         (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
     ],
-    "3001_v2_hca": [
+    "3001_v2_hca": [ # named for consistency with files on my rack
         (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
         (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
         (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
         (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
     ],
-    "3001_v2_hca2": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
-        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
-        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca3": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D16A, b"\x2c\x01", b"\x90\x01"),  # Unknown limit (16A): 300 -> 400
-        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
-        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca4": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca5": [
+    "3001_v2_hca5": [ #this puts 0 speed command reject at ~510
         (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
         (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
         (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
@@ -58,37 +33,7 @@ patches = {
         (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
         (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
     ],
-    "3001_v2_hca6": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
-        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca7": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D16A, b"\x2c\x01", b"\xf4\x01"),  # Unknown limit (16A): 300 -> 500
-        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca8": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D0A6, b"\xcc\x00", b"\x54\x01"),  # Command truncate limit (A6): 204 -> 340
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca9": [
-        (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
-        (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
-        (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
-        (0x0005D0A8, b"\xcc\x00", b"\x54\x01"),  # Command reject limit (A8): 204 -> 340
-        (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
-    ],
-    "3001_v2_hca11": [
+    "3001_v2_hca11": [ #this puts 0 speed command reject at ~1200 or something, but even 0 speed rack hard faults >632
         (0x0005D7A0, b"8J0909144J \x003001", None),  # Software number and version
         (0x0005D249, b"\x64", b"\x00"),  # Disengage countdown
         (0x0005D2AE, b"\x14", b"\x00"),  # Min speed
@@ -96,7 +41,7 @@ patches = {
         (0x0005D0A6, b"\xcc\x00", b"\x24\x03"),  # Command truncate limit: 204 -> 804
         (0x0005FFFC, b"Ende", b"\xff\xff\xff\xff"),  # End of FW marker
     ],
-    "3305": [
+    "3305": [ #???? prob wrong
         (0x0005D824, b"8J0909144P \x003305", None),  # Software number and version
         (0x0005D285, b"\x64", b"\x00"),  # Timebomb
         (0x0005D2F6, b"\x14", b"\x00"),  # Min speed
